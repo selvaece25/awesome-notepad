@@ -1,39 +1,55 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
+import CodeMirrorEditor from '@/shared/CodeMirrorEditor';
+import WelcomeNote from '@/components/WelcomeNote';
+import Button from '@/shared/Button';
+import { AppConstant } from '@/constants/appConstants';
+import { NoteEditorProps } from '@/types';
 
-const NoteEditor = () => {
-    return (
-        <div className="col-sm-7 col-lg-9">
-          <div className="tab-content">
-          <article className="tab-pane container active" id="lorem-left">
-                <h1>Lorem</h1>
-                <section>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Pulvinar mattis nunc sed blandit libero volutpat sed cras ornare. Diam vulputate
-                  ut pharetra sit amet. Orci ac auctor augue mauris augue neque. Turpis massa sed elementum tempus
-                  egestas. Faucibus ornare suspendisse sed nisi. Ipsum nunc aliquet bibendum enim facilisis gravida
-                  neque convallis a. Pretium fusce id velit ut tortor pretium viverra. Egestas sed tempus urna et
-                  pharetra. Pellentesque adipiscing commodo elit at imperdiet dui. Posuere urna nec tincidunt praesent
-                  semper. Erat velit scelerisque in dictum non consectetur a erat. Scelerisque viverra mauris in
-                  aliquam. Duis ultricies lacus sed turpis tincidunt id aliquet risus. Consectetur lorem donec massa
-                  sapien faucibus et molestie.
-                </section>
-              </article>
-              <article className="tab-pane container" id="ipsum-left">
-                <h1>Ipsum</h1>
-                <section>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. A lacus vestibulum sed arcu. Mi tempus imperdiet nulla malesuada pellentesque.
-                  Natoque penatibus et magnis dis parturient. Rhoncus aenean vel elit scelerisque mauris pellentesque.
-                  In hendrerit gravida rutrum quisque non tellus orci ac. Lectus magna fringilla urna porttitor rhoncus
-                  dolor. At tempor commodo ullamcorper a lacus vestibulum sed arcu. Senectus et netus et malesuada fames
-                  ac. Diam quis enim lobortis scelerisque fermentum. Praesent tristique magna sit amet purus gravida
-                  quis. Elit eget gravida cum sociis natoque penatibus et magnis. Nibh praesent tristique magna sit amet
-                  purus gravida. Cursus vitae congue mauris rhoncus. Id leo in vitae turpis massa. Blandit libero
-                  volutpat sed cras. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna.
-                </section>
-              </article>
+const NoteEditor: React.FC<NoteEditorProps> = ({ activeNote, isAddNote, saveNoteHandler, isFormProcessing }) => {
+  const isFormEnabled = isAddNote || (activeNote && activeNote.id);
+  const [noteText, setNoteText] = useState<string>('');
+  const buttonText = isAddNote ? AppConstant['NOTE_CREATE_BUTTON'] : AppConstant['NOTE_UPATE_BUTTON'];
+
+  useEffect(() => {
+    setNoteText(activeNote.note);
+  }, [activeNote]);
+
+  const renderEditor = () => {
+    if (isFormProcessing) {
+      return <div className="spinner"><span className="spinner-border" ></span></div>;
+    } else if (isFormEnabled) {
+      return (
+        <CodeMirrorEditor
+          noteText={noteText}
+          ChangeTextHandler={(value: string) => setNoteText(value)}
+        />
+      );
+    } else {
+      return <WelcomeNote />;
+    }
+  };
+  return (
+    <div className="col-sm-7 col-lg-9">
+      <div className="tab-content">
+        <div className="tab-pane active show">
+          <div className="row">
+            <div className="col-lg-12 details fill">
+              {renderEditor()}
+              <section className="note-menu-bar px-4">
+                { isFormEnabled && (<Button
+                  classes="btn-link"
+                  text={buttonText}
+                  canShow={!isFormProcessing}
+                  onClickHandler={() => { saveNoteHandler(activeNote.id || null, noteText); }}
+                />
+                )}
+              </section>
+            </div>
           </div>
         </div>
-      );
-}
-export default NoteEditor
+      </div>
+    </div>
+  );
+};
+NoteEditor.displayName = 'NoteEditor';
+export default NoteEditor;

@@ -1,77 +1,77 @@
 .tabs-section .nav-tabs {
-    border: 0;
-  }
-  .tabs-section .nav-item {
-    min-width: 100%;
-  }
-  .tabs-section .nav-link {
-    border: 0;
-    transition: 0.3s;
-    color: #d0d0d0;
-    border-radius: 0;
-    font-weight: 600;
-    font-size: 15px;
-    display: block;
+  border: 0;
+}
+.tabs-section .nav-item {
+  min-width: 100%;
+}
+.tabs-section .nav-link {
+  border: 0;
+  transition: 0.3s;
+  color: #d0d0d0;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 15px;
+  display: block;
+}
+.tabs-section .border-right {
+  border-right: 2px solid #808080 !important;
+}
+.tabs-section .nav-link:hover {
+  color: #000;
+}
+.tabs-section .nav-link.active {
+  color: #e0e0e0;
+  background: #b8b8b8;
+}
+.header {
+  overflow: hidden;
+  border-bottom: 2px solid #808080 !important;
+  padding: 20px 10px;
+  color: #808080;
+}
+.fill {
+  height: 90vh !important;
+}
+
+.header-left {
+  float: left;
+}
+.spinner {
+  position: fixed;
+  z-index: 1031;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.CodeMirror {
+  height: 80vh !important;
+}
+
+.note-menu-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 20;
+  width: 100%;
+  z-index: 99999;
+}
+.note-menu-bar a {
+  color: #1589ff;
+}
+@media screen and (max-width: 600px) {
+  .header-right {
+    float: none;
   }
   .tabs-section .border-right {
-    border-right: 2px solid #808080 !important;
-  }
-  .tabs-section .nav-link:hover {
-    color: #000;
-  }
-  .tabs-section .nav-link.active {
-    color: #e0e0e0;
-    background: #b8b8b8;
-  }
-  .header {
-    overflow: hidden;
-    border-bottom: 2px solid #808080 !important;
-    padding: 20px 10px;
-    color: #808080;
+    border-right: 0px !important;
   }
   .fill {
-    height: 90vh !important;
-  }
-  
-  .header-left {
-    float: left;
-  }
-  .spinner {
-    position: fixed;
-    z-index: 1031;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: auto !important;
   }
   .CodeMirror {
-    height: 80vh !important;
+    height: 70vh !important;
   }
-  
-  .note-menu-bar {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 20;
-    width: 100%;
-    z-index: 99999;
-  }
-  .note-menu-bar a {
-    color: #1589ff;
-  }
-  @media screen and (max-width: 600px) {
-    .header-right {
-      float: none;
-    }
-    .tabs-section .border-right {
-      border-right: 0px !important;
-    }
-    .fill {
-      height: auto !important;
-    }
-    .CodeMirror {
-      height: 70vh !important;
-    }
-  }
+}
