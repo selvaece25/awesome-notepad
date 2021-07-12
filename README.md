@@ -17,7 +17,7 @@
 
 - `client/` directory - React front end code.
 - `server/` directory - Node.js back end code.
-- `static/` directory - Compiled front end assets. 
+- `public/` directory - It will not be processed by webpacks. 
 
 Created by webpack when you run the command `yarn run start`. The Node.js back end serves serves these assets using the
 [`express.static`](https://expressjs.com/en/starter/static-files.html#serving-static-files-in-express) middleware.
