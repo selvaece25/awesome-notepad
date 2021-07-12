@@ -1,6 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const HelloWorld = () => <h1>Hello, World!</h1>
+import StartApp from '@/start/StartApp';
 
-ReactDOM.render(<HelloWorld />, document.getElementById("root"));
+ReactDOM.render(
+  <React.StrictMode>
+    <StartApp />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
