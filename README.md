@@ -48,6 +48,13 @@ Created by webpack when you run the command `yarn run start`. The Node.js back e
     |── index.tsx
     |── style.css
 ```
+## Testing
+Run unit and component/integration tests.
+
+```
+yarn run test 
+```
+![alt text](https://green-tech2510.slite.com/api/files/E5XhbbBhpl/Screenshot%202021-07-12%20at%205.05.32%20PM.png)
 
 ## Usage
 
