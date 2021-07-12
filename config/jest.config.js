@@ -1,0 +1,24 @@
+module.exports = {
+  // Setting the root to the actual root, since this file is in root/config
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  rootDir: '../',
+  roots: ['<rootDir>/src', '<rootDir>/tests/unit'],
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+    '\\.(html|xml|txt|md)$': 'jest-raw-loader',
+  },
+  setupFilesAfterEnv: ['@testing-library/jest-dom', 'jest-extended'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleNameMapper: {
+    // Allow `@/` to map to `src/client/` in Jest tests
+    '@/(.*)$': '<rootDir>/src/client/$1',
+    '@test/(.*)$': '<rootDir>tests/__mocks__/$1',
+    '\\.(css|less)$': '<rootDir>/tests/__mocks__/styleMock.ts',
+  },
+  globals: {
+    'ts-jest': {
+      diagnostics: false,
+    },
+  },
+};
