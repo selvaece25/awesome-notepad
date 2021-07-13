@@ -3,7 +3,7 @@ import { ConstantItemProps } from '@/types';
 export const AppConstant: ConstantItemProps = {
 APP_TITLE: 'My awesome Notepad',
 WELCOME_TITLE: 'Welcome to My Awesome Notepad!',
-WELCOME_CONTENT: 'Awesome Notepad is a free and Have some fun on Awesome Notepad.',
+WELCOME_CONTENT: 'Awesome Notepad is a free and entertaining application.',
 FORM_PROCESSING: 'Processing ...',
 NOTE_CREATE_BUTTON:'Save',
 NOTE_UPATE_BUTTON:'Update',
