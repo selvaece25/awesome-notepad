@@ -2,6 +2,7 @@
   "name": "awesome-notepad",
   "scripts": {
     "client": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
     "start": "npm run client",
     "server:start": "node src/server/app.js"
   },
