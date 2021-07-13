@@ -48,6 +48,23 @@ Created by webpack when you run the command `yarn run start`. The Node.js back e
     |── index.tsx
     |── style.css
 ```
+## Back End Folder Structure
+```
+    ├── controllers
+    │   ├── notepad.js
+    ├── middlewares
+    │   ├── error-handler.js   
+    ├── models
+    │   ├── notepad.js
+    ├── presenters
+    │   ├── notepad.js
+    ├── routes 
+    │   ├── notepad.js
+    |── validators
+    │   ├── notepad.js
+    |── app.js
+```
+
 ## Testing
 Run unit and component/integration tests.
 
@@ -68,7 +85,7 @@ yarn run start
 Go to localhost:3000 to view the app.
 
 # Run Node.js back end server
-npm start
+yarn run server:start
 
 API requests will be proxied to port 5000 automatically.
 ```
