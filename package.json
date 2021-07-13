@@ -5,7 +5,8 @@
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
     "start": "serve -s build",
     "server:start": "node src/server/app.js",
-    "heroku-postbuild": "npm run build"
+    "start:original": "if-env NODE_ENV=production && cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
+    "start:prod": "node src/server/app.js"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
