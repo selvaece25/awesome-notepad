@@ -53,7 +53,7 @@ export default function usePalletize() {
 		}
 		
 	}
-
+    const truncateNote = (description: string) => description.length > 30 ? `${description.substring(0, 30)}...` : description;
 	const saveNoteRecord = (noteId: number, noteText: string) => {
 		try {
 			if (noteId) {
@@ -77,7 +77,7 @@ export default function usePalletize() {
 				addToast(SuccessCode['NOTE_CREATE_SUCCESS'], { appearance: 'success'});
 				setNotes((prevNotes: NoteItem[]) => ([...prevNotes, {
 					id: responses.id,
-					note: responses.description
+					note: truncateNote(responses.description)
 				}]));
 				setActiveNote((prevState: any) => ({...prevState,
 					id: responses.id,
@@ -102,7 +102,7 @@ export default function usePalletize() {
 			if (responses && responses.id) {
 				let newNotes = [...notes];
 				const aciveNotIndex = newNotes.findIndex(note => note.id === noteId);
-				newNotes[aciveNotIndex] = { id: responses.id, note: responses.description };
+				newNotes[aciveNotIndex] = { id: responses.id, note: truncateNote(responses.description) };
 				setNotes(newNotes);
 				addToast(SuccessCode['NOTE_UPDATE_SUCCESS'], { appearance: 'success' });
 			}
