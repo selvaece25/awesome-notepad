@@ -4,7 +4,8 @@
     "client": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
     "start": "serve -s build",
-    "server:start": "node src/server/app.js"
+    "server:start": "node src/server/app.js",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
