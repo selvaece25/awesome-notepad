@@ -1,24 +1,25 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
-const PORT = 3000;
-const STATIC_ASSETS_PATH = path.resolve(`${__dirname}/../../static`);
+const appConfig = require('../../config/app.json');
+
+const routes = require('./routes/notepad');
 
 const app = express();
 
-// Serve front end assets which have been built by webpack
-app.use("/static", express.static(STATIC_ASSETS_PATH));
-
-app.get("/", (request, response) => {
-	response.send(`
-<!DOCTYPE html>
-<html>
-	<body>
-		<div id="container"></div>
-		<script src="/static/bundle.js"></script>
-	</body>
-</html>
-	`);
+mongoose.connect(appConfig.mongo_url, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  poolSize: appConfig.pool_size,
 });
 
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}.\n\nLoad it in your browser at http://localhost:${PORT}`))
+app.use(bodyParser.json({ type: 'application/json' }));
+app.use('/api/note', routes);
+// Serve front end a
+app.listen(appConfig.port, () =>
+  // eslint-disable-next-line no-console
+  console.log(
+    `App listening on port ${appConfig.port}.\n\nLoad it in your browser at http://localhost:${appConfig.port}`
+  )
+);

@@ -3,7 +3,7 @@
   "scripts": {
     "client": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "start": "npm run client",
-    "test": "jest --config config/jest.config.js"
+    "server:start": "node src/server/app.js"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -29,6 +29,10 @@
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.2.3",
     "typescript": "^4.3.5",
+    "joi": "^17.4.1",
+    "body-parser": "^1.19.0",
+    "mongoose": "^5.13.2",
+    "lodash": "^4.17.21",
     "yarn": "^1.22.10"
   },
   "devDependencies": {
@@ -56,3 +60,4 @@
     "webpack-merge": "^5.2.0"
   }
 }
+
