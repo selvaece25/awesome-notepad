@@ -3,7 +3,7 @@
   "scripts": {
     "client": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
-    "start": "npm run client",
+    "start": "serve -s build",
     "server:start": "node src/server/app.js"
   },
   "dependencies": {
@@ -40,7 +40,8 @@
     "webpack": "^5.1.3",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.2.0"
+    "webpack-merge": "^5.2.0",
+    "serve": "^9.4.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
