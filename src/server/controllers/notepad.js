@@ -9,9 +9,9 @@ const create = async (req, res, next) => {
   const validator = new NotepadValidator('create');
   try {
     if (validator.validate(data || {}) && validator.value) {
-      await NotepadModel.create({ description: validator.value.description });
-      res.status(201);
-      res.json(new NotepadPresenter().toCreateJson());
+      const responses = await NotepadModel.create({ description: validator.value.description });
+      res.status(200);
+      res.json(new NotepadPresenter().toCreateJson(responses));
     } else {
       res.status(400);
       res.json(validator.errors);
@@ -36,8 +36,9 @@ const update = async (req, res, next) => {
         { _id: validator.value.id },
         { $set: { description: validator.value.description } }
       );
+      const noteDetails = await NotepadModel.findOne({ _id: validator.value.id });
       res.status(200);
-      res.json(new NotepadPresenter().toUpdateJson());
+      res.json(new NotepadPresenter().toUpdateJson(noteDetails));
     } else {
       res.status(400);
       res.json(validator.errors);
@@ -91,7 +92,7 @@ const fetchMany = async (req, res, next) => {
     }
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error(error.description);
+    console.error(error);
     next();
   }
 };

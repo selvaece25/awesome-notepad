@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const appConfig = require('../../config/app.json');
 
@@ -13,6 +14,8 @@ mongoose.connect(appConfig.mongo_url, {
   useCreateIndex: true,
   poolSize: appConfig.pool_size,
 });
+
+app.use(cors());
 
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use('/api/note', routes);
