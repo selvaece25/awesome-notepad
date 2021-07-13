@@ -28,7 +28,6 @@ export default function usePalletize() {
 					return { id: response.id, note: response.description };
 				});
 				setNotes(noteData);
-				console.log("-----notedetails------");
 				console.log(noteData[0].id);
 				console.log(noteData[0]);
 				selectActiveNote(noteData[0].id);

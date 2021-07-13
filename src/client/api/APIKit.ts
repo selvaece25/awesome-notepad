@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-// Create axios client, pre-configured with baseURL
+//const baseUrl = `${process.env.REACT_APP_API_URL}`;
+const baseUrl = 'http://localhost:5000/api/';
+
 let APIKit = axios.create({
-  baseURL: 'http://localhost:5000/api/',
+  baseURL: baseUrl,
   timeout: 10000,
 });
 
