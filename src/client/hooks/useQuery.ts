@@ -17,8 +17,7 @@ export default function useFetch() {
       return await APIKit({
         method,
         url: url,
-        // data: payloadData ? { data: payloadData } : undefined
-        data: payloadData,
+        data: payloadData ? { data: payloadData } : undefined
       })
         .then((res: { data: any }) => {
           if (sucessMessage) {

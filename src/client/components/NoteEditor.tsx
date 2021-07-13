@@ -28,6 +28,25 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ activeNote, isAddNote, saveNote
       return <WelcomeNote />;
     }
   };
+
+  const FooterActionSection = () => {
+    return useMemo(() => {
+      return (
+        <>
+          {noteText && (
+            <Button
+              classes="btn-link"
+              text={buttonText}
+              canShow={!isFormProcessing}
+              onClickHandler={() => { saveNoteHandler(activeNote.id || null, noteText);  }}
+            />
+          )}
+        </>
+      );
+    }, [isAddNote, activeNote]);
+  };
+
+
   return (
     <div className="col-sm-7 col-lg-9">
       <div className="tab-content">
@@ -36,13 +55,7 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ activeNote, isAddNote, saveNote
             <div className="col-lg-12 details fill">
               {renderEditor()}
               <section className="note-menu-bar px-4">
-                { isFormEnabled && (<Button
-                  classes="btn-link"
-                  text={buttonText}
-                  canShow={!isFormProcessing}
-                  onClickHandler={() => { saveNoteHandler(activeNote.id || null, noteText); }}
-                />
-                )}
+                <FooterActionSection />
               </section>
             </div>
           </div>

@@ -22,12 +22,15 @@ export default function usePalletize() {
 	const fetchNotes = async() => {
 		try {
 			setLoading(true);
-			const responses = await fetchData({ method: 'GET', url: `task` });
+			const responses = await fetchData({ method: 'GET', url: `note` });
 			if (responses && responses.length) {
 				const noteData = responses.map((response: any) => {
-					return { id: response._id, note: response.description };
+					return { id: response.id, note: response.description };
 				});
 				setNotes(noteData);
+				console.log("-----notedetails------");
+				console.log(noteData[0].id);
+				console.log(noteData[0]);
 				selectActiveNote(noteData[0].id);
 			}
 		} catch (err) {
@@ -39,9 +42,9 @@ export default function usePalletize() {
 	const selectActiveNote = async (id: number) => {
 		try {
 			setFormProcess(true);
-			const responses = await fetchData({ method: 'GET', url: `task/${id}` });
+			const responses = await fetchData({ method: 'GET', url: `note/${id}` });
 			if (responses && responses.description) {
-			  setActiveNote((prevState: any) => ({...prevState, id: responses._id, note : responses.description }));
+			  setActiveNote((prevState: any) => ({...prevState, id: responses.id, note : responses.description }));
 		      setAddNote(false);
 			}
 		}  catch (err) {
@@ -68,17 +71,17 @@ export default function usePalletize() {
 			setFormProcess(true);
 			const responses = await fetchData({
 				method: 'POST',
-				url: `task`,
+				url: `note`,
 				payloadData: { description: noteText }
 			});
-			if (responses && responses._id) {
+			if (responses && responses.id) {
 				addToast(SuccessCode['NOTE_CREATE_SUCCESS'], { appearance: 'success'});
 				setNotes((prevNotes: NoteItem[]) => ([...prevNotes, {
-					id: responses._id,
+					id: responses.id,
 					note: responses.description
 				}]));
 				setActiveNote((prevState: any) => ({...prevState,
-					id: responses._id,
+					id: responses.id,
 					note: responses.description
 				}));
 				setAddNote(false);
@@ -94,13 +97,13 @@ export default function usePalletize() {
 			setFormProcess(true);
 			const responses = await fetchData({
 				method: 'PUT',
-				url: `task/${noteId}`,
+				url: `note/${noteId}`,
 				payloadData: { description: noteText }
 			});
-			if (responses && responses._id) {
+			if (responses && responses.id) {
 				let newNotes = [...notes];
 				const aciveNotIndex = newNotes.findIndex(note => note.id === noteId);
-				newNotes[aciveNotIndex] = { id: responses._id, note: responses.description };
+				newNotes[aciveNotIndex] = { id: responses.id, note: responses.description };
 				setNotes(newNotes);
 				addToast(SuccessCode['NOTE_UPDATE_SUCCESS'], { appearance: 'success' });
 			}
