@@ -3,11 +3,10 @@
   "scripts": {
     "client": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
-    "start": "serve -s build",
-    "server:start": "node src/server/app.js",
-    "start:original": "if-env NODE_ENV=production && cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
-    "start:prod": "node src/server/app.js",
-    "heroku-postbuild":"cross-env NODE_ENV=production webpack --config config/webpack.prod.js"
+    "start": "npm run client",
+    "test": "jest --config config/jest.config.js",
+    "server:test": "jest --config config/jest-server.config.js",
+    "server:start": "node src/server/app.js"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -44,7 +43,9 @@
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.2.0",
-    "serve": "^9.4.0"
+    "serve": "^9.4.0",
+    "sinon": "^11.1.1",
+    "chai": "^4.3.4"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
